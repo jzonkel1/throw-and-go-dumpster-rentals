@@ -1,0 +1,9 @@
+# Deploy ONLY the public website: index.html + images/
+# Everything else here (audit/proposal PDFs & HTML, raw source photos) stays PRIVATE.
+/*
+!/.gitignore
+!/index.html
+!/images/
+
+# Proposal-only asset (a screenshot of the homepage), not needed on the live site:
+/images/new-website-preview.png
