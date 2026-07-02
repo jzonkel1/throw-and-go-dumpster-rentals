@@ -2,6 +2,7 @@
 # Everything else here (audit/proposal PDFs & HTML, raw source photos) stays PRIVATE.
 /*
 !/.gitignore
+!/.nojekyll
 !/index.html
 !/images/
 
