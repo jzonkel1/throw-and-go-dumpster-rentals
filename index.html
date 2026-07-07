@@ -28,6 +28,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 
+<!-- Shared design system (see assets/styles.css) -->
+<link rel="stylesheet" href="assets/styles.css">
+
+<!-- GA4: add your Measurement ID here and to build/data.js, then re-generate sub-pages.
+     Uncomment and replace G-XXXXXXXXXX:
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+-->
+
 <!-- ===== Structured Data: LocalBusiness ===== -->
 <script type="application/ld+json">
 {
@@ -56,7 +65,9 @@
     { "@type": "City", "name": "Robstown" },
     { "@type": "City", "name": "Ingleside" },
     { "@type": "City", "name": "Aransas Pass" },
-    { "@type": "City", "name": "Flour Bluff" }
+    { "@type": "City", "name": "Flour Bluff" },
+    { "@type": "City", "name": "Annaville" },
+    { "@type": "City", "name": "Gregory" }
   ],
   "openingHoursSpecification": [{
     "@type": "OpeningHoursSpecification",
@@ -91,266 +102,6 @@
   ]
 }
 </script>
-
-<style>
-  :root{
-    --hazard:#FFC400;
-    --hazard-bright:#FFD633;
-    --ink:#0E0E0E;
-    --ink-2:#161616;
-    --ink-3:#1F1F1F;
-    --steel:#2A2A2A;
-    --line:#333;
-    --paper:#F4F2EC;
-    --paper-2:#EAE7DE;
-    --text-dark:#1A1A1A;
-    --muted-dark:#5A574F;
-    --text-light:#F5F2EA;
-    --muted-light:#ADA99E;
-    --radius:14px;
-    --shadow:0 18px 50px rgba(0,0,0,.28);
-    --stripe:repeating-linear-gradient(45deg,#FFC400 0 22px,#0E0E0E 22px 44px);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:'Barlow',system-ui,sans-serif;
-    color:var(--text-dark);
-    background:var(--paper);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  h1,h2,h3,.display{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:.98;letter-spacing:.5px}
-  img{max-width:100%;display:block}
-  a{color:inherit;text-decoration:none}
-  .wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 22px}
-  .stripe-bar{height:10px;background:var(--stripe)}
-
-  /* ===== Buttons ===== */
-  .btn{display:inline-flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-weight:800;font-size:1.02rem;letter-spacing:.3px;padding:16px 26px;border-radius:10px;border:0;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .15s ease;text-transform:uppercase}
-  .btn-call{background:var(--hazard);color:#0E0E0E;box-shadow:0 8px 0 #B98A00}
-  .btn-call:hover{transform:translateY(-2px);box-shadow:0 10px 0 #B98A00}
-  .btn-call:active{transform:translateY(4px);box-shadow:0 4px 0 #B98A00}
-  .btn-ghost{background:transparent;color:var(--text-light);border:2px solid rgba(255,255,255,.35)}
-  .btn-ghost:hover{border-color:var(--hazard);color:var(--hazard)}
-  .btn-dark{background:var(--ink);color:var(--hazard);box-shadow:0 8px 0 #000}
-  .btn-dark:hover{transform:translateY(-2px)}
-  .btn-block{width:100%;justify-content:center}
-
-  /* ===== Top utility bar ===== */
-  .topbar{background:var(--ink);color:var(--muted-light);font-size:.82rem;font-weight:600;letter-spacing:.4px}
-  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;min-height:38px;gap:14px;flex-wrap:wrap}
-  .topbar b{color:var(--hazard)}
-  .topbar .stars{color:var(--hazard);letter-spacing:2px}
-
-  /* ===== Header ===== */
-  header.nav{position:sticky;top:0;z-index:60;background:rgba(14,14,14,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:box-shadow .2s}
-  header.nav.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.4)}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;min-height:74px;gap:18px}
-  .logo{display:flex;align-items:center}
-  .logo img{height:52px;border-radius:6px;border:2px solid #000}
-  nav.menu{display:flex;align-items:center;gap:26px}
-  nav.menu a{color:var(--text-light);font-weight:700;font-size:.94rem;letter-spacing:.4px;text-transform:uppercase;transition:color .15s;position:relative}
-  nav.menu a:hover{color:var(--hazard)}
-  .nav-cta{display:flex;align-items:center;gap:12px}
-  .nav-phone{color:var(--hazard);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.5rem;letter-spacing:.5px;display:flex;align-items:center;gap:8px}
-  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
-  .burger span{width:26px;height:3px;background:var(--hazard);border-radius:2px;transition:.25s}
-
-  /* ===== Hero ===== */
-  .hero{position:relative;background:var(--ink);color:var(--text-light);overflow:hidden}
-  .hero-bg{position:absolute;inset:0;background:url('images/throw-and-go-dumpster-truck-hero.webp') center center/cover no-repeat;opacity:1}
-  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(11,11,8,.95) 0%,rgba(11,11,8,.86) 30%,rgba(11,11,8,.52) 56%,rgba(11,11,8,.6) 100%)}
-  @media(max-width:960px){.hero-bg::after{background:linear-gradient(180deg,rgba(11,11,8,.9) 0%,rgba(11,11,8,.7) 45%,rgba(11,11,8,.82) 100%)}}
-  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;padding:64px 22px 74px}
-  .eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(255,196,0,.12);border:1px solid rgba(255,196,0,.4);color:var(--hazard);font-weight:800;font-size:.8rem;letter-spacing:1.4px;text-transform:uppercase;padding:8px 16px;border-radius:100px;margin-bottom:22px}
-  .hero h1{font-size:clamp(2.7rem,5.5vw,4.5rem);color:#fff;margin-bottom:8px}
-  .hero h1 .hl{color:var(--hazard)}
-  .hero .lead{font-size:1.22rem;color:var(--muted-light);max-width:540px;margin:18px 0 28px;font-weight:500}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .hero-chips{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px}
-  .chip{display:flex;align-items:center;gap:9px;font-weight:700;font-size:.95rem;color:#EDE9DF}
-  .chip svg{flex:0 0 auto}
-
-  /* Quote form card */
-  .quote-card{background:var(--paper);color:var(--text-dark);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;border:3px solid #000}
-  .quote-card .qc-head{background:var(--ink);color:#fff;padding:18px 24px;position:relative}
-  .quote-card .qc-head .stripe-top{position:absolute;top:0;left:0;right:0;height:6px;background:var(--stripe)}
-  .quote-card .qc-head h3{font-size:1.5rem;color:var(--hazard);margin-top:4px}
-  .quote-card .qc-head p{font-size:.9rem;color:var(--muted-light);font-weight:600;margin-top:3px}
-  .quote-card form{padding:22px 24px 26px}
-  .field{margin-bottom:13px}
-  .field label{display:block;font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;color:#3a382f}
-  .field input,.field select,.field textarea{width:100%;padding:12px 14px;border:2px solid #d8d3c6;border-radius:9px;font-family:inherit;font-size:1rem;background:#fff;transition:border-color .15s}
-  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--hazard);box-shadow:0 0 0 3px rgba(255,196,0,.25)}
-  .field.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .qc-fine{font-size:.78rem;color:var(--muted-dark);text-align:center;margin-top:12px;font-weight:600}
-
-  /* ===== Section scaffolding ===== */
-  section{padding:74px 0}
-  .sec-head{text-align:center;max-width:720px;margin:0 auto 46px}
-  .sec-kicker{display:inline-block;color:#B98A00;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:.85rem;margin-bottom:12px}
-  .sec-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink)}
-  .sec-head p{font-size:1.12rem;color:var(--muted-dark);margin-top:14px;font-weight:500}
-  .on-dark{background:var(--ink);color:var(--text-light)}
-  .on-dark .sec-head h2{color:#fff}
-  .on-dark .sec-head p{color:var(--muted-light)}
-  .on-dark .sec-kicker{color:var(--hazard)}
-
-  /* ===== Trust strip ===== */
-  .trust{background:var(--hazard);color:#0E0E0E;padding:0}
-  .trust .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding:22px}
-  .trust .t-item{display:flex;align-items:center;gap:12px;font-weight:800}
-  .trust .t-item .big{font-family:'Anton',sans-serif;font-size:2rem;line-height:1}
-  .trust .t-item small{display:block;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;opacity:.75}
-  .trust .divider{width:1px;height:44px;background:rgba(0,0,0,.25)}
-
-  /* ===== Pricing ===== */
-  .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:900px;margin:0 auto}
-  .price-card{background:#fff;border:3px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);position:relative;display:flex;flex-direction:column}
-  .price-card .pc-img{aspect-ratio:16/10;overflow:hidden;background:#111}
-  .price-card .pc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-  .price-card:hover .pc-img img{transform:scale(1.06)}
-  .pc-tag{position:absolute;top:16px;left:16px;background:var(--hazard);color:#000;font-family:'Anton',sans-serif;font-size:1.05rem;padding:6px 14px;border-radius:6px;border:2px solid #000;z-index:2}
-  .pc-body{padding:24px;flex:1;display:flex;flex-direction:column}
-  .pc-body h3{font-size:1.9rem}
-  .pc-price{font-family:'Anton',sans-serif;font-size:3.2rem;color:var(--ink);line-height:1;margin:6px 0 2px}
-  .pc-price span{font-size:1rem;font-family:'Barlow';color:var(--muted-dark);font-weight:700}
-  .pc-list{list-style:none;margin:16px 0 22px;display:flex;flex-direction:column;gap:9px}
-  .pc-list li{display:flex;gap:10px;align-items:flex-start;font-weight:600;color:#333}
-  .pc-list li::before{content:"";width:20px;height:20px;flex:0 0 auto;margin-top:2px;background:var(--hazard);border:2px solid #000;border-radius:5px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");background-size:14px;background-repeat:no-repeat;background-position:center}
-  .pc-body .btn{margin-top:auto}
-  .price-note{text-align:center;max-width:760px;margin:30px auto 0;color:var(--muted-dark);font-weight:600;font-size:1.02rem}
-  .price-note b{color:var(--ink)}
-
-  /* ===== Services ===== */
-  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .svc{background:var(--ink-2);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;transition:transform .2s,border-color .2s;position:relative;overflow:hidden}
-  .svc:hover{transform:translateY(-6px);border-color:var(--hazard)}
-  .svc .ic{width:56px;height:56px;border-radius:12px;background:var(--hazard);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
-  .svc h3{font-size:1.35rem;color:#fff;margin-bottom:9px}
-  .svc p{color:var(--muted-light);font-weight:500}
-
-  /* ===== How it works ===== */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;position:relative}
-  .step{text-align:center;padding:14px}
-  .step .num{font-family:'Anton',sans-serif;font-size:3.6rem;color:var(--hazard);-webkit-text-stroke:2px #000;line-height:1}
-  .step h3{font-size:1.4rem;margin:8px 0 8px}
-  .step p{color:var(--muted-dark);font-weight:500}
-
-  /* ===== Why / owner band ===== */
-  .why{background:var(--hazard);position:relative;overflow:hidden}
-  .why .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
-  .why h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink);margin-bottom:8px}
-  .why .lead{font-size:1.14rem;color:#2c2410;font-weight:600;margin:14px 0 24px}
-  .why-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .why-list li{display:flex;gap:10px;font-weight:700;color:#1c1808;align-items:flex-start}
-  .why-list li svg{flex:0 0 auto;margin-top:3px}
-  .why-photo{border-radius:16px;overflow:hidden;border:4px solid #000;box-shadow:0 20px 44px rgba(0,0,0,.3);aspect-ratio:4/3}
-  .why-photo img{width:100%;height:100%;object-fit:cover}
-
-  /* ===== Reviews ===== */
-  .rev-top{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:40px}
-  .rev-top .stars{color:var(--hazard);font-size:1.9rem;letter-spacing:5px}
-  .rev-top .score{font-family:'Anton',sans-serif;font-size:1.4rem;color:#fff}
-  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .review{background:var(--ink-2);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;display:flex;flex-direction:column}
-  .review .rstars{color:var(--hazard);letter-spacing:2px;margin-bottom:12px}
-  .review p{color:#E7E3D9;font-weight:500;font-style:italic;margin-bottom:16px;flex:1}
-  .review .who{display:flex;align-items:center;gap:12px}
-  .review .av{width:42px;height:42px;border-radius:50%;background:var(--hazard);color:#000;font-family:'Anton',sans-serif;font-size:1.2rem;display:flex;align-items:center;justify-content:center}
-  .review .who b{color:#fff;display:block;font-size:.98rem}
-  .review .who small{color:var(--muted-light)}
-  .rev-cta{text-align:center;margin-top:36px}
-
-  /* ===== Service area ===== */
-  .area{background:var(--paper-2)}
-  .area-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
-  .area-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-  .area-list span{background:#fff;border:2px solid var(--ink);border-radius:8px;padding:9px 16px;font-weight:700;font-size:.95rem}
-  .area-map{background:var(--ink);border-radius:16px;padding:34px;color:#fff;text-align:center;border:3px solid #000}
-  .area-map .display{color:var(--hazard);font-size:2rem}
-
-  /* ===== Business package band ===== */
-  .biz{background:var(--ink);color:#fff}
-  .biz .wrap{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
-  .biz .b-card{background:linear-gradient(160deg,#1e1e1e,#141414);border:2px solid var(--hazard);border-radius:18px;padding:34px}
-  .biz h2{font-size:2.4rem;color:#fff}
-  .biz .price-big{font-family:'Anton',sans-serif;font-size:3rem;color:var(--hazard);line-height:1;margin:10px 0}
-  .biz .price-big span{font-size:1rem;color:var(--muted-light);font-family:'Barlow';font-weight:700}
-  .biz ul{list-style:none;margin:18px 0 0;display:flex;flex-direction:column;gap:11px}
-  .biz ul li{display:flex;gap:10px;color:#E7E3D9;font-weight:600}
-  .biz ul li svg{flex:0 0 auto;margin-top:3px}
-
-  /* ===== FAQ ===== */
-  .faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-  .faq{border:2px solid var(--paper-2);background:#fff;border-radius:12px;overflow:hidden;transition:border-color .2s}
-  .faq[open]{border-color:var(--hazard)}
-  .faq summary{list-style:none;cursor:pointer;padding:20px 24px;font-family:'Barlow';font-weight:800;font-size:1.12rem;display:flex;justify-content:space-between;align-items:center;gap:14px}
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary .plus{flex:0 0 auto;width:28px;height:28px;background:var(--hazard);border:2px solid #000;border-radius:6px;position:relative;transition:transform .25s}
-  .faq summary .plus::before,.faq summary .plus::after{content:"";position:absolute;background:#000;border-radius:2px;top:50%;left:50%;transform:translate(-50%,-50%)}
-  .faq summary .plus::before{width:12px;height:3px}
-  .faq summary .plus::after{width:3px;height:12px;transition:opacity .2s}
-  .faq[open] summary .plus{transform:rotate(90deg)}
-  .faq[open] summary .plus::after{opacity:0}
-  .faq .faq-body{padding:0 24px 22px;color:var(--muted-dark);font-weight:500;font-size:1.04rem}
-
-  /* ===== Final CTA ===== */
-  .final{position:relative;background:var(--ink);color:#fff;overflow:hidden}
-  .final-bg{position:absolute;inset:0;background:url('images/dumpster-rental-yard-cleanout-corpus-christi.webp') center/cover;opacity:.2}
-  .final-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0,rgba(14,14,14,.55),#0E0E0E 75%)}
-  .final .wrap{position:relative;z-index:2;text-align:center;max-width:760px}
-  .final h2{font-size:clamp(2.2rem,5vw,3.6rem);color:#fff}
-  .final h2 .hl{color:var(--hazard)}
-  .final p{font-size:1.2rem;color:var(--muted-light);margin:18px 0 30px;font-weight:500}
-  .final-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-  .final .phone-xl{font-family:'Anton',sans-serif;font-size:clamp(2.4rem,7vw,4rem);color:var(--hazard);margin-top:26px;display:inline-block;letter-spacing:1px}
-
-  /* ===== Footer ===== */
-  footer{background:#0A0A0A;color:var(--muted-light);padding:56px 0 0}
-  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px}
-  footer .flogo{height:56px;border-radius:6px;border:2px solid #000;margin-bottom:16px}
-  footer p{font-weight:500}
-  footer h4{font-family:'Anton';color:var(--hazard);font-size:1.15rem;margin-bottom:16px;letter-spacing:.5px}
-  footer .fcol a{display:block;color:var(--muted-light);margin-bottom:10px;font-weight:600;transition:color .15s}
-  footer .fcol a:hover{color:var(--hazard)}
-  footer .nap b{color:#fff;display:block;margin-bottom:4px}
-  .foot-social{display:flex;gap:12px;margin-top:16px}
-  .foot-social a{width:42px;height:42px;border-radius:10px;background:var(--ink-3);display:flex;align-items:center;justify-content:center;transition:.15s}
-  .foot-social a:hover{background:var(--hazard)}
-  .foot-social a:hover svg{stroke:#000;fill:#000}
-  .foot-bottom{border-top:1px solid var(--line);padding:20px 0;text-align:center;font-size:.86rem;font-weight:600}
-  .foot-bottom .slogan{color:var(--hazard);font-family:'Barlow Condensed';font-weight:700;letter-spacing:1px;font-size:1.05rem}
-
-  /* sticky mobile call bar */
-  .mobile-callbar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:80;background:var(--ink);border-top:3px solid var(--hazard);padding:9px 12px;gap:10px}
-  .mobile-callbar a{flex:1;justify-content:center;padding:14px}
-
-  /* ===== Responsive ===== */
-  @media(max-width:960px){
-    nav.menu{display:none}
-    .nav-phone span.lbl{display:none}
-    .burger{display:flex}
-    .hero .wrap{grid-template-columns:1fr;gap:38px;padding:48px 22px 60px}
-    .why .wrap,.biz .wrap,.area-grid{grid-template-columns:1fr;gap:34px}
-    .svc-grid,.rev-grid{grid-template-columns:1fr 1fr}
-    .steps{grid-template-columns:1fr;gap:14px}
-    nav.menu.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--ink-2);padding:22px;gap:18px;border-bottom:3px solid var(--hazard)}
-  }
-  @media(max-width:640px){
-    .price-grid{grid-template-columns:1fr}
-    .svc-grid,.rev-grid,.why-list{grid-template-columns:1fr}
-    .trust .divider{display:none}
-    .trust .wrap{justify-content:center;text-align:center}
-    .field.row2{grid-template-columns:1fr}
-    .mobile-callbar{display:flex}
-    body{padding-bottom:74px}
-    .topbar .wrap{justify-content:center}
-    .topbar .tb-left{display:none}
-  }
-</style>
 </head>
 <body>
 
@@ -365,13 +116,13 @@
 <!-- ===== Header ===== -->
 <header class="nav" id="nav">
   <div class="wrap">
-    <a href="#top" class="logo"><img src="images/throw-and-go-dumpster-rentals-corpus-christi-logo.png" alt="Throw and Go Dumpster Rentals — Corpus Christi, TX"></a>
+    <a href="./" class="logo"><img src="images/throw-and-go-dumpster-rentals-corpus-christi-logo.png" alt="Throw and Go Dumpster Rentals — Corpus Christi, TX"></a>
     <nav class="menu" id="menu">
-      <a href="#pricing">Sizes &amp; Pricing</a>
-      <a href="#services">Services</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#area">Service Area</a>
-      <a href="#faq">FAQ</a>
+      <a href="services/">Services</a>
+      <a href="dumpster-sizes/">Dumpster Sizes</a>
+      <a href="service-areas/">Service Areas</a>
+      <a href="blog/">Blog</a>
+      <a href="contact/">Contact</a>
     </nav>
     <div class="nav-cta">
       <a href="tel:+13613175001" class="nav-phone" aria-label="Call Throw and Go Dumpster Rentals">
@@ -414,7 +165,7 @@
         <p>FAST RESPONSE · NO OBLIGATION</p>
         <h3>Get Your Free Quote</h3>
       </div>
-      <form action="https://formsubmit.co/sales@throwandgorentals.com" method="POST">
+      <form action="https://formsubmit.co/sales@throwandgorentals.com" method="POST" data-quote-form>
         <input type="hidden" name="_subject" value="New Dumpster Quote Request — throwandgorentals.com">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
@@ -483,6 +234,7 @@
             <li>Fits most driveways without scratching</li>
           </ul>
           <a href="#quote" class="btn btn-dark btn-block">Reserve a 15-Yard</a>
+          <a href="dumpster-sizes/15-yard-dumpster/" style="display:block;text-align:center;margin-top:10px;color:#B98A00;font-weight:800;font-size:.9rem">See full 15-yard details →</a>
         </div>
       </div>
       <div class="price-card">
@@ -497,10 +249,11 @@
             <li>Extra room for bulky furniture &amp; construction debris</li>
           </ul>
           <a href="#quote" class="btn btn-dark btn-block">Reserve a 20-Yard</a>
+          <a href="dumpster-sizes/20-yard-dumpster/" style="display:block;text-align:center;margin-top:10px;color:#B98A00;font-weight:800;font-size:.9rem">See full 20-yard details →</a>
         </div>
       </div>
     </div>
-    <p class="price-note">👍 <b>Finish early?</b> Return the dumpster before your 5 days are up and we'll apply a <b>$25 credit</b> toward your next rental. Running a bigger job or need a swap-out? <a href="tel:+13613175001" style="color:#B98A00;font-weight:800">Call us</a> for contractor &amp; volume pricing.<br><span style="font-size:.88rem">Prices apply within roughly 30 miles of Corpus Christi — extended service areas are quoted at booking.</span></p>
+    <p class="price-note">👍 <b>Finish early?</b> Return the dumpster before your 5 days are up and we'll apply a <b>$25 credit</b> toward your next rental. Running a bigger job or need a swap-out? <a href="tel:+13613175001" style="color:#B98A00;font-weight:800">Call us</a> for contractor &amp; volume pricing.<br><span style="font-size:.88rem">Prices apply within roughly 30 miles of Corpus Christi — extended service areas are quoted at booking. See our <a href="pricing/" style="color:#B98A00;font-weight:700">full pricing page</a>.</span></p>
   </div>
 </section>
 
@@ -513,37 +266,44 @@
       <p>From a weekend garage purge to a full tear-off, Throw &amp; Go handles the heavy lifting so you can keep your project moving.</p>
     </div>
     <div class="svc-grid">
-      <div class="svc">
+      <a class="svc svc-link" href="services/residential-dumpster-rental/">
         <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
         <h3>Home &amp; Garage Cleanouts</h3>
         <p>Decluttering, downsizing, or clearing out a property? Toss it all in one place instead of endless dump runs.</p>
-      </div>
-      <div class="svc">
+        <span class="svc-arrow">Learn more →</span>
+      </a>
+      <a class="svc svc-link" href="services/construction-dumpster-rental/">
         <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6.6 6.6a2 2 0 0 0 2.8 2.8l6.6-6.6a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-2.1z"/></svg></div>
         <h3>Renovation &amp; Remodels</h3>
         <p>Kitchen, bath, and whole-home remodel debris — drywall, flooring, cabinets and tile, gone the moment you're done.</p>
-      </div>
-      <div class="svc">
+        <span class="svc-arrow">Learn more →</span>
+      </a>
+      <a class="svc svc-link" href="services/roofing-dumpster-rental/">
         <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></div>
         <h3>Roofing Tear-Off</h3>
         <p>Heavy shingle loads are our specialty — the 2-ton allowance keeps most residential roofs covered without penalty.</p>
-      </div>
-      <div class="svc">
+        <span class="svc-arrow">Learn more →</span>
+      </a>
+      <a class="svc svc-link" href="services/estate-cleanout-dumpster-rental/">
         <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <h3>Estate &amp; Moving Cleanouts</h3>
         <p>Clearing an estate or turning a rental? We'll help you handle a lifetime of stuff with zero stress.</p>
-      </div>
-      <div class="svc">
+        <span class="svc-arrow">Learn more →</span>
+      </a>
+      <a class="svc svc-link" href="services/yard-debris-dumpster-rental/">
         <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10M12 20V10M8 14c-3 0-5-2-5-5 3 0 5 2 5 5zM16 14c3 0 5-2 5-5-3 0-5 2-5 5z"/></svg></div>
         <h3>Yard &amp; Storm Debris</h3>
         <p>Brush, branches, fencing and landscaping waste — clear the yard fast after a big project or a Coastal Bend storm.</p>
-      </div>
-      <div class="svc">
+        <span class="svc-arrow">Learn more →</span>
+      </a>
+      <a class="svc svc-link" href="services/contractor-dumpster-rental/">
         <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v4H3zM6 7v13M18 7v13M6 12h12M6 16h12"/></svg></div>
         <h3>Contractors &amp; Builders</h3>
         <p>Reliable swap-outs, priority scheduling and volume pricing for the crews that keep Corpus Christi building.</p>
-      </div>
+        <span class="svc-arrow">Learn more →</span>
+      </a>
     </div>
+    <div style="text-align:center;margin-top:38px"><a href="services/" class="btn btn-call">See All Services →</a></div>
   </div>
 </section>
 
@@ -589,6 +349,7 @@
         <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Driveway-safe placement</li>
         <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Friendly service, every time</li>
       </ul>
+      <div style="margin-top:26px"><a href="about/" class="btn btn-dark">More About Throw &amp; Go →</a></div>
     </div>
     <div class="why-photo"><img src="images/dumpster-rental-truck-corpus-christi.avif" alt="Throw and Go Dumpster Rentals black and yellow roll-off truck serving Corpus Christi"></div>
   </div>
@@ -649,16 +410,17 @@
         <h2 class="display" style="font-size:clamp(2rem,4vw,3rem);color:var(--ink)">Corpus Christi &amp; Surrounding Areas</h2>
         <p style="color:var(--muted-dark);font-weight:500;margin-top:14px;font-size:1.08rem">If you're in Corpus Christi or nearby, we've got a dumpster for you. Not sure if we reach your neighborhood? Give us a call — we cover most of the Coastal Bend.</p>
         <div class="area-list">
-          <span>Corpus Christi</span>
-          <span>Calallen</span>
-          <span>Portland</span>
-          <span>Robstown</span>
-          <span>Ingleside</span>
-          <span>Aransas Pass</span>
-          <span>Flour Bluff</span>
-          <span>Annaville</span>
-          <span>Gregory</span>
+          <a href="service-areas/corpus-christi/">Corpus Christi</a>
+          <a href="service-areas/calallen/">Calallen</a>
+          <a href="service-areas/portland/">Portland</a>
+          <a href="service-areas/robstown/">Robstown</a>
+          <a href="service-areas/ingleside/">Ingleside</a>
+          <a href="service-areas/aransas-pass/">Aransas Pass</a>
+          <a href="service-areas/flour-bluff/">Flour Bluff</a>
+          <a href="service-areas/annaville/">Annaville</a>
+          <a href="service-areas/gregory/">Gregory</a>
         </div>
+        <div style="margin-top:24px"><a href="service-areas/" class="btn btn-dark">View All Service Areas →</a></div>
       </div>
       <div class="area-map">
         <div class="display">Based in Corpus Christi</div>
@@ -702,6 +464,33 @@
         <div class="faq-body">Corpus Christi and the surrounding Coastal Bend — including Calallen, Portland, Robstown, Ingleside, Aransas Pass, Flour Bluff and more. Not sure about your spot? Give us a call.</div>
       </details>
     </div>
+    <div style="text-align:center;margin-top:32px"><a href="faq/" class="btn btn-dark">See All FAQs →</a></div>
+  </div>
+</section>
+
+<!-- ===== Blog / latest ===== -->
+<section class="area">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Tips &amp; Guides</span>
+      <h2>From the Throw &amp; Go Blog</h2>
+      <p>Straight-talk advice on sizing, pricing, and getting your Corpus Christi cleanup done right.</p>
+    </div>
+    <div class="hub-grid">
+      <a class="hub-card" href="blog/what-size-dumpster-for-a-roof-tear-off/">
+        <div class="hc-img"><img src="images/roll-off-dumpster-roofing-debris-corpus-christi.webp" alt="Roll-off dumpster loaded with roofing tear-off shingles in Corpus Christi"></div>
+        <div class="hc-body"><div class="hc-tag">Sizing Guides</div><h3>What Size Dumpster for a Roof Tear-Off?</h3><p>How to pick a 15 or 20-yard for your roof — and stay inside the weight limit.</p><span class="hc-arrow">Read article →</span></div>
+      </a>
+      <a class="hub-card" href="blog/dumpster-rental-cost-corpus-christi/">
+        <div class="hc-img"><img src="images/20-yard-dumpster-rental-corpus-christi.webp" alt="20-yard roll-off dumpster in a Corpus Christi driveway with pricing"></div>
+        <div class="hc-body"><div class="hc-tag">Pricing</div><h3>What Does a Dumpster Cost in Corpus Christi?</h3><p>Real 2026 numbers, what's included, and the hidden fees to watch for.</p><span class="hc-arrow">Read article →</span></div>
+      </a>
+      <a class="hub-card" href="blog/15-yard-vs-20-yard-dumpster/">
+        <div class="hc-img"><img src="images/15-yard-dumpster-delivery-corpus-christi.webp" alt="15-yard and 20-yard roll-off dumpster comparison in Corpus Christi"></div>
+        <div class="hc-body"><div class="hc-tag">Sizing Guides</div><h3>15-Yard vs. 20-Yard: Which Fits?</h3><p>A plain-English guide to choosing the right size so you don't over- or under-pay.</p><span class="hc-arrow">Read article →</span></div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:36px"><a href="blog/" class="btn btn-dark">Visit the Blog →</a></div>
   </div>
 </section>
 
@@ -733,13 +522,23 @@
         </div>
       </div>
       <div class="fcol">
-        <h4>Quick Links</h4>
-        <a href="#pricing">Sizes &amp; Pricing</a>
-        <a href="#services">Our Services</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#area">Service Area</a>
-        <a href="#faq">FAQ</a>
-        <a href="#quote">Get a Quote</a>
+        <h4>Services</h4>
+        <a href="services/roll-off-dumpster-rental/">Roll-Off Rental</a>
+        <a href="services/residential-dumpster-rental/">Home Cleanouts</a>
+        <a href="services/construction-dumpster-rental/">Construction &amp; Reno</a>
+        <a href="services/roofing-dumpster-rental/">Roofing Tear-Off</a>
+        <a href="services/estate-cleanout-dumpster-rental/">Estate &amp; Moving</a>
+        <a href="services/contractor-dumpster-rental/">Contractors</a>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <a href="dumpster-sizes/">Dumpster Sizes</a>
+        <a href="pricing/">Pricing</a>
+        <a href="service-areas/">Service Areas</a>
+        <a href="blog/">Blog</a>
+        <a href="about/">About Us</a>
+        <a href="faq/">FAQ</a>
+        <a href="contact/">Contact</a>
       </div>
       <div class="fcol nap">
         <h4>Contact</h4>
@@ -779,6 +578,20 @@
       if(d.open){document.querySelectorAll('.faq').forEach(o=>{if(o!==d)o.open=false})}
     });
   });
+</script>
+
+<!-- Analytics: GA4 tel-click + quote-submit event tracking (no-op until GA4 is added above) -->
+<script>
+(function(){
+  function track(name, params){ if (typeof window.gtag === 'function'){ window.gtag('event', name, params || {}); } }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (a){ track('call_click', { link_url: a.getAttribute('href'), page_location: location.pathname, link_text: (a.textContent||'').trim().slice(0,60) }); }
+  }, true);
+  document.addEventListener('submit', function(e){
+    if (e.target && e.target.matches('form[data-quote-form]')){ track('quote_submit', { page_location: location.pathname }); }
+  }, true);
+})();
 </script>
 </body>
 </html>
